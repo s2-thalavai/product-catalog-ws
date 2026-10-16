@@ -1,0 +1,27 @@
+meta {
+  name: Delete product
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:deleteProduct>
+        <id>{{productId}}</id>
+      </cat:deleteProduct>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("empty response", () => expect(res.getBody()).to.contain("deleteProductResponse"));
+}

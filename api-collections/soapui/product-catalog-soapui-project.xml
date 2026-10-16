@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project xmlns:con="http://eviware.com/soapui/config" name="Product Catalog SOAP" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL">
+  <con:description>JAX-WS product catalog: sample calls per operation + regression test suite. Start the service first (the WSDL is loaded from http://localhost:8080/ws/v1/products?wsdl). Change the project property "endpoint" to test another environment.</con:description>
+  <con:settings/>
+  <con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ProductCatalogPortBinding" type="wsdl" bindingName="{http://catalog.infy.com/v1}ProductCatalogPortBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/v1/products?wsdl">
+    <con:settings/>
+    <con:endpoints>
+      <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+    </con:endpoints>
+    <con:operation isOneWay="false" action="" name="createProduct" bindingOperationName="createProduct" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Create product">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:createProduct>
+         <product>
+            <sku>FIT-KBEL-01</sku>
+            <name>Kettlebell 8 kg</name>
+            <description>Cast iron kettlebell</description>
+            <category>Fitness</category>
+            <price>1899.00</price>
+            <stock>25</stock>
+         </product>
+      </cat:createProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+    <con:operation isOneWay="false" action="" name="getProduct" bindingOperationName="getProduct" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Get product 1">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:getProduct>
+         <id>1</id>
+      </cat:getProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+    <con:operation isOneWay="false" action="" name="updateProduct" bindingOperationName="updateProduct" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Update product 1">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:updateProduct>
+         <id>1</id>
+         <product>
+            <sku>ELEC-MOUSE-01</sku>
+            <name>Wireless Mouse (Silent)</name>
+            <category>Electronics</category>
+            <price>899.00</price>
+            <stock>100</stock>
+         </product>
+      </cat:updateProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+    <con:operation isOneWay="false" action="" name="deleteProduct" bindingOperationName="deleteProduct" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Delete product 2">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:deleteProduct>
+         <id>2</id>
+      </cat:deleteProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+    <con:operation isOneWay="false" action="" name="listProducts" bindingOperationName="listProducts" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="List page 0 (10 per page)">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:listProducts>
+         <page>0</page>
+         <size>10</size>
+      </cat:listProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+    <con:operation isOneWay="false" action="" name="searchProducts" bindingOperationName="searchProducts" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Search Electronics 1000-9000 by price desc">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:8080/ws/v1/products</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:searchProducts>
+         <criteria>
+            <keyword></keyword>
+            <category>Electronics</category>
+            <minPrice>1000</minPrice>
+            <maxPrice>9000</maxPrice>
+            <inStockOnly>true</inStockOnly>
+            <page>0</page>
+            <size>3</size>
+            <sortBy>PRICE</sortBy>
+            <sortOrder>DESC</sortOrder>
+         </criteria>
+      </cat:searchProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:jmsPropertyConfig/>
+        <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+        <con:wsrmConfig version="1.2"/>
+      </con:call>
+    </con:operation>
+  </con:interface>
+  <con:testSuite name="Product Catalog Regression">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CRUD lifecycle" searchProperties="true">
+      <con:description>Create -&gt; read -&gt; update -&gt; duplicate SKU -&gt; delete -&gt; read deleted. Uses a unique SKU per run.</con:description>
+      <con:settings/>
+      <con:testStep type="request" name="Create product">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>createProduct</con:operation>
+          <con:request name="Create product">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:createProduct>
+         <product>
+            <sku>${#TestCase#sku}</sku>
+            <name>SoapUI Test Lamp</name>
+            <description>Created by the SoapUI test suite</description>
+            <category>SoapUI</category>
+            <price>1299.50</price>
+            <stock>10</stock>
+         </product>
+      </cat:createProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="Response SLA Assertion" name="Responds within 3000 ms">
+              <con:configuration>
+                <SLA>3000</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="SKU is stored">
+              <con:configuration>
+                <path>//product/sku/text()</path>
+                <content>${#TestCase#sku}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="Price has 2 decimals">
+              <con:configuration>
+                <path>//product/price/text()</path>
+                <content>1299.50</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Id and timestamps assigned">
+              <con:configuration>
+                <scriptText>def xml = new XmlSlurper().parseText(messageExchange.responseContent)
+def p = xml.'**'.find { it.name() == 'product' }
+assert (p.id.text() as long) &gt; 0
+assert p.createdAt.text() ==~ /\d{4}-\d{2}-\d{2}T.*/</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Remember product id">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:PropertyTransfersStep">
+          <con:transfers setNullOnMissingSource="false" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>productId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Create product</con:sourceStep>
+            <con:sourcePath>//product/id</con:sourcePath>
+            <con:targetType>productId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Get product">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>getProduct</con:operation>
+          <con:request name="Get product">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:getProduct>
+         <id>${#TestCase#productId}</id>
+      </cat:getProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Same product returned">
+              <con:configuration>
+                <path>//product/name/text()</path>
+                <content>SoapUI Test Lamp</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Update product">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>updateProduct</con:operation>
+          <con:request name="Update product">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:updateProduct>
+         <id>${#TestCase#productId}</id>
+         <product>
+            <sku>${#TestCase#sku}</sku>
+            <name>SoapUI Test Lamp v2</name>
+            <category>SoapUI</category>
+            <price>999</price>
+            <stock>4</stock>
+         </product>
+      </cat:updateProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Name replaced">
+              <con:configuration>
+                <path>//product/name/text()</path>
+                <content>SoapUI Test Lamp v2</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="Price normalized to 2 decimals">
+              <con:configuration>
+                <path>//product/price/text()</path>
+                <content>999.00</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="Description cleared (full replace)">
+              <con:configuration>
+                <path>count(//product/description)</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Create duplicate SKU">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>createProduct</con:operation>
+          <con:request name="Create duplicate SKU">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:createProduct>
+         <product>
+            <sku>${#TestCase#sku}</sku>
+            <name>Duplicate</name>
+            <price>1.00</price>
+            <stock>1</stock>
+         </product>
+      </cat:createProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Fault Assertion" name="Is a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Fault code is DUPLICATE_SKU">
+              <con:configuration>
+                <path>//*:CatalogFault/code/text()</path>
+                <content>DUPLICATE_SKU</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Fault has a traceId and no stack trace">
+              <con:configuration>
+                <scriptText>def body = messageExchange.responseContent
+def xml = new XmlSlurper().parseText(body)
+def traceId = xml.'**'.find { it.name() == 'traceId' }?.text()
+assert traceId
+assert !body.contains('at com.infy')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Delete product">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>deleteProduct</con:operation>
+          <con:request name="Delete product">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:deleteProduct>
+         <id>${#TestCase#productId}</id>
+      </cat:deleteProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="Simple Contains" name="Empty delete response">
+              <con:configuration>
+                <token>deleteProductResponse</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Get deleted product">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>getProduct</con:operation>
+          <con:request name="Get deleted product">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:getProduct>
+         <id>${#TestCase#productId}</id>
+      </cat:getProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Fault Assertion" name="Is a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Fault code is PRODUCT_NOT_FOUND">
+              <con:configuration>
+                <path>//*:CatalogFault/code/text()</path>
+                <content>PRODUCT_NOT_FOUND</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Fault has a traceId and no stack trace">
+              <con:configuration>
+                <scriptText>def body = messageExchange.responseContent
+def xml = new XmlSlurper().parseText(body)
+def traceId = xml.'**'.find { it.name() == 'traceId' }?.text()
+assert traceId
+assert !body.contains('at com.infy')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>sku</con:name>
+          <con:value/>
+        </con:property>
+        <con:property>
+          <con:name>productId</con:name>
+          <con:value/>
+        </con:property>
+      </con:properties>
+      <con:setupScript>testCase.setPropertyValue("sku", "SOAPUI-" + System.currentTimeMillis())</con:setupScript>
+    </con:testCase>
+    <con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="List and search" searchProperties="true">
+      <con:description>Asserts paging and filtering rules; works with any data set (demo data recommended).</con:description>
+      <con:settings/>
+      <con:testStep type="request" name="List first page">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>listProducts</con:operation>
+          <con:request name="List first page">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:listProducts>
+         <page>0</page>
+         <size>10</size>
+      </cat:listProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Page size 10">
+              <con:configuration>
+                <path>//result/size/text()</path>
+                <content>10</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="No previous page">
+              <con:configuration>
+                <path>//result/hasPrevious/text()</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Paging numbers are consistent and sorted by id">
+              <con:configuration>
+                <scriptText>def r = new XmlSlurper().parseText(messageExchange.responseContent).'**'.find { it.name() == 'result' }
+def ids = r.items.product.collect { it.id.text() as long }
+assert ids.size() &lt;= 10
+assert ids == ids.sort(false)
+long total = r.totalElements.text() as long
+assert (r.totalPages.text() as int) == Math.ceil(total / 10.0) as int</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Search filter, sort, page">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>searchProducts</con:operation>
+          <con:request name="Search filter, sort, page">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:searchProducts>
+         <criteria>
+            <category>electronics</category>
+            <minPrice>1000</minPrice>
+            <maxPrice>9000</maxPrice>
+            <inStockOnly>true</inStockOnly>
+            <page>0</page>
+            <size>3</size>
+            <sortBy>PRICE</sortBy>
+            <sortOrder>DESC</sortOrder>
+         </criteria>
+      </cat:searchProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Page size 3">
+              <con:configuration>
+                <path>//result/size/text()</path>
+                <content>3</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Every item matches the filters, sorted by price desc">
+              <con:configuration>
+                <scriptText>def r = new XmlSlurper().parseText(messageExchange.responseContent).'**'.find { it.name() == 'result' }
+def products = r.items.product.list()
+assert products.size() &lt;= 3
+def prices = products.collect { it.price.text() as BigDecimal }
+assert prices == prices.sort(false).reverse()
+products.each { p -&gt;
+    assert p.category.text() == 'Electronics'
+    assert (p.stock.text() as int) &gt; 0
+    def price = p.price.text() as BigDecimal
+    assert price &gt;= 1000 &amp;&amp; price &lt;= 9000
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Search keyword">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>searchProducts</con:operation>
+          <con:request name="Search keyword">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:searchProducts>
+         <criteria>
+            <keyword>BOTTLE</keyword>
+            <sortBy>NAME</sortBy>
+         </criteria>
+      </cat:searchProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Default page size 20">
+              <con:configuration>
+                <path>//result/size/text()</path>
+                <content>20</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Every hit mentions the keyword">
+              <con:configuration>
+                <scriptText>def r = new XmlSlurper().parseText(messageExchange.responseContent).'**'.find { it.name() == 'result' }
+r.items.product.each { p -&gt;
+    def text = [p.name.text(), p.sku.text(), p.description.text()].join(' ').toLowerCase()
+    assert text.contains('bottle')
+}</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Page size is capped">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>searchProducts</con:operation>
+          <con:request name="Page size is capped">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:searchProducts>
+         <criteria>
+            <size>5000</size>
+         </criteria>
+      </cat:searchProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Size capped at 100">
+              <con:configuration>
+                <path>//result/size/text()</path>
+                <content>100</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Page past the end">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>listProducts</con:operation>
+          <con:request name="Page past the end">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:listProducts>
+         <page>999</page>
+         <size>10</size>
+      </cat:listProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Response" name="Valid SOAP Response"/>
+            <con:assertion type="Not SOAP Fault Assertion" name="Not a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="No items">
+              <con:configuration>
+                <path>count(//result/items/product)</path>
+                <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="No next page">
+              <con:configuration>
+                <path>//result/hasNext/text()</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Faults" searchProperties="true">
+      <con:description>Typed CatalogFault codes, validation details and correlation id.</con:description>
+      <con:settings/>
+      <con:testStep type="request" name="Validation errors">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>createProduct</con:operation>
+          <con:request name="Validation errors">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:createProduct>
+         <product>
+            <sku>x</sku>
+            <name></name>
+            <price>-1</price>
+            <stock>-5</stock>
+         </product>
+      </cat:createProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Fault Assertion" name="Is a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Fault code is VALIDATION_FAILED">
+              <con:configuration>
+                <path>//*:CatalogFault/code/text()</path>
+                <content>VALIDATION_FAILED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Fault has a traceId and no stack trace">
+              <con:configuration>
+                <scriptText>def body = messageExchange.responseContent
+def xml = new XmlSlurper().parseText(body)
+def traceId = xml.'**'.find { it.name() == 'traceId' }?.text()
+assert traceId
+assert !body.contains('at com.infy')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="All 4 violations reported">
+              <con:configuration>
+                <path>count(//*:CatalogFault/details/detail)</path>
+                <content>4</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" name="Contains name is required">
+              <con:configuration>
+                <token>name is required</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Invalid price range">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>searchProducts</con:operation>
+          <con:request name="Invalid price range">
+            <con:settings/>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:searchProducts>
+         <criteria>
+            <minPrice>500</minPrice>
+            <maxPrice>100</maxPrice>
+         </criteria>
+      </cat:searchProducts>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Fault Assertion" name="Is a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Fault code is VALIDATION_FAILED">
+              <con:configuration>
+                <path>//*:CatalogFault/code/text()</path>
+                <content>VALIDATION_FAILED</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Fault has a traceId and no stack trace">
+              <con:configuration>
+                <scriptText>def body = messageExchange.responseContent
+def xml = new XmlSlurper().parseText(body)
+def traceId = xml.'**'.find { it.name() == 'traceId' }?.text()
+assert traceId
+assert !body.contains('at com.infy')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="Explains the problem">
+              <con:configuration>
+                <path>//*:CatalogFault/details/detail/text()</path>
+                <content>minPrice must be &lt;= maxPrice</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="request" name="Correlation id is echoed">
+        <con:settings/>
+        <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RequestStep">
+          <con:interface>ProductCatalogPortBinding</con:interface>
+          <con:operation>getProduct</con:operation>
+          <con:request name="Correlation id is echoed">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config"&gt;&lt;con:entry key="X-Correlation-Id" value="soapui-trace-123"/&gt;&lt;/xml-fragment&gt;</con:setting>
+            </con:settings>
+            <con:encoding>UTF-8</con:encoding>
+            <con:endpoint>${#Project#endpoint}</con:endpoint>
+            <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cat:getProduct>
+         <id>987654321</id>
+      </cat:getProduct>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+            <con:assertion type="SOAP Fault Assertion" name="Is a SOAP Fault"/>
+            <con:assertion type="XPath Match" name="Fault code is PRODUCT_NOT_FOUND">
+              <con:configuration>
+                <path>//*:CatalogFault/code/text()</path>
+                <content>PRODUCT_NOT_FOUND</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" name="Fault has a traceId and no stack trace">
+              <con:configuration>
+                <scriptText>def body = messageExchange.responseContent
+def xml = new XmlSlurper().parseText(body)
+def traceId = xml.'**'.find { it.name() == 'traceId' }?.text()
+assert traceId
+assert !body.contains('at com.infy')</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" name="traceId is the caller's correlation id">
+              <con:configuration>
+                <path>//*:CatalogFault/traceId/text()</path>
+                <content>soapui-trace-123</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:wsaConfig mustUnderstand="NONE" version="200508"/>
+            <con:wsrmConfig version="1.2"/>
+          </con:request>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
+  <con:properties>
+    <con:property>
+      <con:name>endpoint</con:name>
+      <con:value>http://localhost:8080/ws/v1/products</con:value>
+    </con:property>
+  </con:properties>
+  <con:wssContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+</con:soapui-project>

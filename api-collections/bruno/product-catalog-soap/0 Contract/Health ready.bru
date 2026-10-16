@@ -1,0 +1,20 @@
+meta {
+  name: Health ready
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/health/ready
+  body: none
+  auth: none
+}
+
+tests {
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("status UP", () => expect(JSON.stringify(res.getBody())).to.contain("UP"));
+}
+
+docs {
+  Readiness probe used by Kubernetes; returns 503 when the database is unreachable.
+}

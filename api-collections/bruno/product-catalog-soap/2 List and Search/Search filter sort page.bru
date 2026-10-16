@@ -1,0 +1,45 @@
+meta {
+  name: Search filter sort page
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:searchProducts>
+        <criteria>
+          <category>electronics</category>
+          <minPrice>1000</minPrice>
+          <maxPrice>9000</maxPrice>
+          <inStockOnly>true</inStockOnly>
+          <page>0</page>
+          <size>3</size>
+          <sortBy>PRICE</sortBy>
+          <sortOrder>DESC</sortOrder>
+        </criteria>
+      </cat:searchProducts>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  const tags = (name) => [...(res.getBody() || '').matchAll(new RegExp('<' + name + '>([^<]*)</' + name + '>', 'g'))].map(m => m[1]);
+  const n = (name) => Number(tag(name));
+  const prices = tags("price").map(Number);
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("at most 3 items", () => expect(prices.length).to.be.at.most(3));
+  test("category matched case-insensitively", () => tags("category").forEach(c => expect(c).to.equal("Electronics")));
+  test("price within range", () => prices.forEach(p => expect(p).to.be.within(1000, 9000)));
+  test("only in-stock items", () => tags("stock").map(Number).forEach(s => expect(s).to.be.above(0)));
+  test("sorted by price descending", () => expect(prices).to.deep.equal([...prices].sort((a, b) => b - a)));
+  test("hasNext consistent", () => expect(tag("hasNext")).to.equal(String(n("totalPages") > 1)));
+}

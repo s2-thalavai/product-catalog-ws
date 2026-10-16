@@ -1,0 +1,20 @@
+meta {
+  name: Get WSDL
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/ws/v1/products?wsdl
+  body: none
+  auth: none
+}
+
+tests {
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("service is published", () => expect(res.getBody()).to.contain('name="ProductCatalogService"'));
+  for (const op of ["createProduct", "getProduct", "updateProduct", "deleteProduct", "listProducts", "searchProducts"]) {
+    test(`operation ${op} is in the WSDL`, () => expect(res.getBody()).to.contain(op));
+  }
+  test("faults are declared", () => expect(res.getBody()).to.contain("CatalogFault"));
+}

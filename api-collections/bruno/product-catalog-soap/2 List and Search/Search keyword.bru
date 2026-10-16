@@ -1,0 +1,38 @@
+meta {
+  name: Search keyword
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:searchProducts>
+        <criteria>
+          <keyword>BOTTLE</keyword>
+          <sortBy>NAME</sortBy>
+        </criteria>
+      </cat:searchProducts>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  const tags = (name) => [...(res.getBody() || '').matchAll(new RegExp('<' + name + '>([^<]*)</' + name + '>', 'g'))].map(m => m[1]);
+  const n = (name) => Number(tag(name));
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("every hit mentions the keyword", () => {
+    const products = (res.getBody().match(/<product>[\s\S]*?<\/product>/g) || []);
+    products.forEach(p => expect(p.toLowerCase()).to.contain("bottle"));
+  });
+  test("sorted by name", () => { const names = tags("name"); expect(names).to.deep.equal([...names].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))); });
+  test("default page size 20", () => expect(n("size")).to.equal(20));
+}

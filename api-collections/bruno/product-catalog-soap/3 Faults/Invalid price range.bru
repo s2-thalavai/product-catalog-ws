@@ -1,0 +1,34 @@
+meta {
+  name: Invalid price range
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:searchProducts>
+        <criteria>
+          <minPrice>500</minPrice>
+          <maxPrice>100</maxPrice>
+        </criteria>
+      </cat:searchProducts>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  test("HTTP 500 SOAP fault", () => expect(res.getStatus()).to.equal(500));
+  test("fault code is VALIDATION_FAILED", () => expect(tag("code")).to.equal("VALIDATION_FAILED"));
+  test("fault has a traceId", () => expect(tag("traceId")).to.be.a("string").and.not.be.empty);
+  test("no stack trace leaked", () => expect(res.getBody()).to.not.contain("at com.infy"));
+  test("explains the problem", () => expect(res.getBody()).to.contain("minPrice must be &lt;= maxPrice"));
+}

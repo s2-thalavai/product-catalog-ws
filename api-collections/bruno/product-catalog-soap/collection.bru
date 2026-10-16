@@ -1,0 +1,13 @@
+headers {
+  Content-Type: text/xml; charset=utf-8
+  SOAPAction: ""
+}
+
+docs {
+  Product Catalog SOAP service (JAX-WS) - every operation, with tests.
+
+  Run in order with the Collection Runner (or `bru run --env local`).
+  The CRUD folder chains requests: Create stores {{productId}} and {{sku}} for the next steps.
+  List & Search assume demo data (SEED_DATA=true) but only assert rules, not exact rows.
+  SOAP faults are HTTP 500; tests check the typed <code> in the CatalogFault detail.
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Update product
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:updateProduct>
+        <id>{{productId}}</id>
+        <product>
+          <sku>{{sku}}</sku>
+          <name>Bruno Test Lamp v2</name>
+          <category>Bruno</category>
+          <price>999</price>
+          <stock>4</stock>
+        </product>
+      </cat:updateProduct>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("name replaced", () => expect(tag("name")).to.equal("Bruno Test Lamp v2"));
+  test("price normalized to 2 decimals", () => expect(tag("price")).to.equal("999.00"));
+  test("stock replaced", () => expect(tag("stock")).to.equal("4"));
+  test("description cleared (full replace)", () => expect(res.getBody()).to.not.contain("<description>"));
+}

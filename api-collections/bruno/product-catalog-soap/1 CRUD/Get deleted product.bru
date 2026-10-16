@@ -1,0 +1,31 @@
+meta {
+  name: Get deleted product
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:getProduct>
+        <id>{{productId}}</id>
+      </cat:getProduct>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  test("HTTP 500 SOAP fault", () => expect(res.getStatus()).to.equal(500));
+  test("fault code is PRODUCT_NOT_FOUND", () => expect(tag("code")).to.equal("PRODUCT_NOT_FOUND"));
+  test("fault has a traceId", () => expect(tag("traceId")).to.be.a("string").and.not.be.empty);
+  test("no stack trace leaked", () => expect(res.getBody()).to.not.contain("at com.infy"));
+  test("message names the id", () => expect(tag("message")).to.contain(bru.getVar("productId")));
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Create duplicate SKU
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:createProduct>
+        <product>
+          <sku>{{sku}}</sku>
+          <name>Duplicate</name>
+          <price>1.00</price>
+          <stock>1</stock>
+        </product>
+      </cat:createProduct>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  test("HTTP 500 SOAP fault", () => expect(res.getStatus()).to.equal(500));
+  test("fault code is DUPLICATE_SKU", () => expect(tag("code")).to.equal("DUPLICATE_SKU"));
+  test("fault has a traceId", () => expect(tag("traceId")).to.be.a("string").and.not.be.empty);
+  test("no stack trace leaked", () => expect(res.getBody()).to.not.contain("at com.infy"));
+}

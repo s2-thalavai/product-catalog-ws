@@ -1,0 +1,35 @@
+meta {
+  name: List first page
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/ws/v1/products
+  body: xml
+  auth: none
+}
+
+body:xml {
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cat="http://catalog.infy.com/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <cat:listProducts>
+        <page>0</page>
+        <size>10</size>
+      </cat:listProducts>
+    </soapenv:Body>
+  </soapenv:Envelope>
+}
+
+tests {
+  const tag = (name) => ((res.getBody() || '').match(new RegExp('<' + name + '>([^<]*)</' + name + '>')) || [])[1];
+  const tags = (name) => [...(res.getBody() || '').matchAll(new RegExp('<' + name + '>([^<]*)</' + name + '>', 'g'))].map(m => m[1]);
+  const n = (name) => Number(tag(name));
+  test("HTTP 200", () => expect(res.getStatus()).to.equal(200));
+  test("page 0 of size 10", () => { expect(n("page")).to.equal(0); expect(n("size")).to.equal(10); });
+  test("at most 10 items", () => expect(tags("sku").length).to.be.at.most(10));
+  test("totalPages matches totalElements", () => expect(n("totalPages")).to.equal(Math.ceil(n("totalElements") / 10)));
+  test("no previous page", () => expect(tag("hasPrevious")).to.equal("false"));
+  test("sorted by id", () => { const ids = tags("id").map(Number); expect(ids).to.deep.equal([...ids].sort((a, b) => a - b)); });
+}
