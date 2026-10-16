@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cat:createProduct>
+      <product>
+        <sku>FIT-KBEL-01</sku>
+        <name>Kettlebell 8 kg</name>
+        <description>Cast iron kettlebell</description>
+        <category>Fitness</category>
+        <price>1899.00</price>
+        <stock>25</stock>
+      </product>
+    </cat:createProduct>
+  </soapenv:Body>
+</soapenv:Envelope>

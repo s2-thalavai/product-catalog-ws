@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cat:createProduct>
+      <product>
+        <sku>x</sku>
+        <name></name>
+        <price>-1</price>
+        <stock>-5</stock>
+      </product>
+    </cat:createProduct>
+  </soapenv:Body>
+</soapenv:Envelope>

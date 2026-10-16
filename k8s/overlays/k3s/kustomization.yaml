@@ -1,0 +1,44 @@
+# Local/dev cluster: k3s or k3d (k3s in Docker). App + in-cluster PostgreSQL + Traefik ingress.
+#   kubectl apply -k k8s/overlays/k3s
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: catalog
+
+resources:
+  - ../../base/app
+  - ../../base/postgres
+  - ingress.yaml
+
+# DEV-ONLY credentials. Never reuse these outside a local cluster.
+secretGenerator:
+  - name: product-catalog-db
+    literals:
+      - username=catalog
+      - password=catalog-dev-only
+
+configMapGenerator:
+  - name: product-catalog-config
+    behavior: merge
+    literals:
+      - SEED_DATA=true
+      - LOG_LEVEL=DEBUG
+
+# Image is imported straight into the cluster (k3d image import / k3s ctr import).
+# The Jenkins pipeline overrides newTag with "<build>-<git sha>".
+images:
+  - name: product-catalog-ws
+    newName: product-catalog-ws
+    newTag: local
+
+patches:
+  # Laptop-friendly resource requests
+  - target:
+      kind: Deployment
+      name: product-catalog
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests
+        value:
+          cpu: 100m
+          memory: 256Mi

@@ -1,0 +1,19 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <!-- Electronics between 1000 and 9000, in stock, most expensive first, 3 per page -->
+    <cat:searchProducts>
+      <criteria>
+        <category>Electronics</category>
+        <minPrice>1000</minPrice>
+        <maxPrice>9000</maxPrice>
+        <inStockOnly>true</inStockOnly>
+        <page>0</page>
+        <size>3</size>
+        <sortBy>PRICE</sortBy>
+        <sortOrder>DESC</sortOrder>
+      </criteria>
+    </cat:searchProducts>
+  </soapenv:Body>
+</soapenv:Envelope>

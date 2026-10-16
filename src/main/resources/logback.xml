@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- One line per event on stdout (12-factor / Kubernetes friendly). traceId comes from CorrelationIdHandler. -->
+<configuration>
+    <!-- Makes the java.util.logging bridge cheap: JUL levels follow Logback levels -->
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX,UTC} %-5level [%thread] traceId=%X{traceId:--} %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.infy.catalog" level="${LOG_LEVEL:-INFO}"/>
+    <logger name="com.sun.xml.ws" level="WARN"/>
+    <logger name="com.zaxxer.hikari" level="INFO"/>
+    <logger name="org.flywaydb" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

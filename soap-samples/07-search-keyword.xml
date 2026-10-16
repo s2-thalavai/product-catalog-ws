@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <!-- Keyword matches name, SKU or description (case-insensitive) -->
+    <cat:searchProducts>
+      <criteria>
+        <keyword>bottle</keyword>
+        <sortBy>NAME</sortBy>
+      </criteria>
+    </cat:searchProducts>
+  </soapenv:Body>
+</soapenv:Envelope>

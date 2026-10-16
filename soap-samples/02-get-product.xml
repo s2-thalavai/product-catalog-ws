@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cat:getProduct>
+      <id>1</id>
+    </cat:getProduct>
+  </soapenv:Body>
+</soapenv:Envelope>

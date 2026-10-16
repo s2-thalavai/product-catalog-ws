@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cat="http://catalog.infy.com/v1">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cat:updateProduct>
+      <id>1</id>
+      <product>
+        <sku>ELEC-MOUSE-01</sku>
+        <name>Wireless Mouse (Silent)</name>
+        <description>Silent-click 2.4 GHz wireless mouse</description>
+        <category>Electronics</category>
+        <price>899.00</price>
+        <stock>100</stock>
+      </product>
+    </cat:updateProduct>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,36 @@
+# The SOAP service. Environment-neutral: overlays set the namespace, image, secrets and ingress.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: product-catalog
+    includeSelectors: false
+
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml
+  - pdb.yaml
+
+# Generated with a content hash: changing a value rolls the pods automatically.
+configMapGenerator:
+  - name: product-catalog-config
+    literals:
+      - APP_PORT=8080
+      - APP_CONTEXT_PATH=/ws/v1/products
+      - STORE_TYPE=postgres
+      - DB_URL=jdbc:postgresql://product-catalog-postgres:5432/catalog
+      - DB_POOL_SIZE=10
+      - SEED_DATA=false
+      - HTTP_THREADS=32
+      - PAGE_SIZE_DEFAULT=20
+      - PAGE_SIZE_MAX=100
+      - SHUTDOWN_GRACE_SECONDS=20
+      - LOG_LEVEL=INFO
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError
+
+images:
+  - name: product-catalog-ws
+    newTag: latest
